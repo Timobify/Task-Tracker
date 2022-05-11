@@ -58,12 +58,12 @@ if(isset( $_POST['Login'])){
                 <h2>Log In</h2>
                 <form class="py-4 py-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="mb-3">
-                        <label for="exampleDropdownFormEmail1">Username</label>
-                        <input type="text" class="form-control" name="user" id="exampleDropdownFormEmail1" placeholder="your username">
+                        <label for="Username">Username</label>
+                        <input type="text" class="form-control" name="user" id="Username" placeholder="your username">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleDropdownFormPassword1">Password</label>
-                        <input type="password" class="form-control" name="psw" id="exampleDropdownFormPassword1" placeholder="Password">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" name="psw" id="Password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
@@ -75,7 +75,6 @@ if(isset( $_POST['Login'])){
                 </form>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="register.php">New around here? Sign up</a>
-                <a class="dropdown-item" href="#">Forgot password?</a>
             </div>
         </div>
 
