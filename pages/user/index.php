@@ -1,10 +1,11 @@
 <?php
 session_start();
 require_once '../connection.php';
-if(!isset($_SESSION['login_id']) && !isset($_SESSION['First_Name']) && !isset($_SESSION['Surname'])) {
+if(!isset($_SESSION['login_id']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
     header("location: ../index.php");
     exit;
 }
+$date1 = date("Y-m-d");
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,94 +45,121 @@ if(!isset($_SESSION['login_id']) && !isset($_SESSION['First_Name']) && !isset($_
             </div>
         </nav>
         <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card p-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <?php
+                                $ID = $_SESSION['login_id'];
+                                $query2  = "SELECT * FROM `task` where uid='$ID' AND status = 1;";
+                                $ret2 = mysqli_query($link, $query2);
+                                $num_results2 = mysqli_num_rows($ret2);
+                            ?>
+                            <h1 class="card-title"><?php echo $num_results2;?></h1>
+                            <p class="card-text">Completed Tasks</p>
+                            <a href="completedtasks.php" class="btn btn-primary">View Completed Tasks</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card p-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <?php
+                                $ID = $_SESSION['login_id'];
+                                $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1';";
+                                $ret1 = mysqli_query($link, $query1);
+                                $num_results1 = mysqli_num_rows($ret1);
+                            ?>
+                            <h1 class="card-title"><?php echo $num_results1;?></h1>
+                            <p class="card-text">Incompleted Tasks</p>
+                            <a href="#" class="btn btn-primary">View Incompleted Tasks</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card p-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <?php
+                                $ID = $_SESSION['login_id'];
+
+                                $query3  = "SELECT * FROM `task` where uid='$ID'  AND status = 0 AND due_date <'$date1';";
+                                $ret3 = mysqli_query($link, $query3);
+                                $num_results3 = mysqli_num_rows($ret3);
+                            ?>
+                            <h1 class="card-title"><?php echo $num_results3;?></h1>
+                            <p class="card-text">Over Due Tasks</p>
+                            <a href="#" class="btn btn-primary">View Over Due Tasks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <h1 class="display-7">You can view assigned Tasks from the system.</h1>
             <table class="table table-dark table-striped">
                 <tr class="header">
-                    <th onclick="sortTable(0)" class="button"><a >Task Title</a></th>
-                    <th onclick="sortTable(1)" class="butten"><a >Description</a></th>
-                    <th onclick="sortTable(2)" class="butten"><a >Due Date</a></th>
-                    <th onclick="sortTable(3)" class="butten"><a >Status</a></th>
+                    <th " class="button"><a >ID</a></th>
+                    <th " class="button"><a >Task Title</a></th>
+                    <th " class="butten"><a >Description</a></th>
+                    <th " class="butten"><a >Due Date</a></th>
+                    <th " class="butten"><a >Status</a></th>
                 </tr>
                 <?php
                 $ID = $_SESSION['login_id'];
-                $query  = "SELECT * FROM `task` left join `assign` on task.id=assign.tid where uid='$ID';";
+                $query  = "SELECT * FROM `task` where uid='$ID';";
                 $ret = mysqli_query($link, $query);
                 $num_results = mysqli_num_rows($ret);
                 for ($i = 0; $i < $num_results; $i++) {
                     $row = mysqli_fetch_array ($ret);
-                    echo "<tr>";
-                    echo "<td>" . $row["title"] . "</td>";
-                    echo "<td>" . $row["description"] . "</td>";
-                    echo "<td>" . $row["due_date"] . "</td>";
-                    echo "<td>" . $row["status"] . "</td>";
-                    echo "<td><a class=\"butten\" href= update.php?ID=".$row['id'].">Update</a></td>";
-                    echo "<td><a class=\"butten\" href= delete.php?ID=".$row['id'].">Delete</a></td>";
-                    echo "</tr>";
-                }if ($num_results==0) {
-                    echo"<h3>No assigned tasks at the moment!</h3>";
-                }
-                echo "<caption>User {$_SESSION['Username']} can delete or view the {$num_results} assigned tasks</caption>";
+                    ?>
+                    <tr>
+                        <?php $id = $row["id"]; ?>
+                        <td class="myvalue"><?php echo $row["id"]; ?></td>
+                        <td><?php echo $row["title"]; ?></td>
+                        <td><?php echo $row["description"] ; ?></td>
+                        <td><?php echo $row["due_date"] ; ?></td>
+                        <input class="myid" type="hidden" value="<?php $id ?>" />
+                        <td>
+                            <?php if ($row["status"] == 0){ ?>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>">
+                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Complete</label>
+                                </div>
+                            <?php }
+                            elseif ($row["status"] == 1){ ?>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked>
+                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Incomplete</label>
+                                </div>
+                            <?php } ?>
+                        </td>
+                        <td><a class="butten" href= view.php?ID= <?php echo $row['id'] ;?> >View</a></td>
+                        <td><a class="butten" href= delete.php?ID= <?php echo $row['id'] ;?> >Delete</a></td>
+                    </tr>
+                <?php }if ($num_results==0) { ?>
+                    <h3>No assigned tasks at the moment!</h3>
+                <?php }
+                echo "<caption>User {$_SESSION['user']} can delete or view the {$num_results} assigned tasks</caption>";
                 ?>
             </table>
         </div>
         <script>
-            function myFunction() {
-                // Declare variables
-                var input, filter, table, tr, td, i;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
+            $(document).ready(function () {
+                $('input.status').on('change', function () {
+                    var decision = $(this).val();
+                    var id = $('td.myvalue').html();
+                    alert(decision);
+                    alert(id);
+                    $.ajax({
+                        type: "POST",
+                        url: "/CodeIgniter/users/Users/update",
+                        data: {decision: decision, id: id},
+                        success: function (msg) {
 
-                // Loop through all table rows, and hide those who don't match the search query
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
+                            $('#autosavenotify').text(msg);
                         }
-                    }
-                }
-            }
+                    })
+                });
+            });
 
-            function sortTable(n) {
-                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                table = document.getElementById("myTable");
-                switching = true;
-                // Set the sorting direction to ascending:
-                dir = "asc";
-                /* Make a loop that will continue untilno switching has been done: */
-                while (switching) {
-                    // Start by saying: no switching is done:
-                    switching = false;
-                    rows = table.rows;
-                    /* Loop throughall table rows (except thefirst, which contains table headers): */
-                    for (i = 1; i < (rows.length - 1); i++) {
-                        // Start by saying there should be no switching:
-                        shouldSwitch = false;
-                        /* Get the twoelements you wantto compare,one from current row and one from the next:*/
-                        x = rows[i].getElementsByTagName("TD")[n];
-                        y = rows[i + 1].getElementsByTagName("TD")[n];
-                        /* Check if thetwo rows should switch place,based on the direction, asc or desc: */
-                        if (dir =="asc") {
-                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                                // If so, mark as a switch and break the loop:
-                                shouldSwitch= true;
-                                break;}
-                        } else if (dir =="desc") {
-                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                                // If so, mark as a switch and break the loop:
-                                shouldSwitch= true;break;}}}
-                    if (shouldSwitch) {
-                        /* If a switch has been marked, make the switchand mark that a switch has been done: */
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);switching = true;
-                        // Each time aswitch is done, increase this countby 1:
-                        switchcount++;} else {
-                        /* If no switching has beendone AND the direction is "asc",set the direction
-                        to "desc"and run the while loop again. */
-                        if (switchcount== 0 && dir =="asc") {dir = "desc";switching = true;}}}}
         </script>
     </body>
 </html>

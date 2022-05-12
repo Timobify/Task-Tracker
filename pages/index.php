@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once 'connection.php';
-
+if(!isset($_SESSION['login_id']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
+    header("location: ../index.php");
+    exit;
+}
 $status = null;
 if(isset( $_POST['Login'])){
     $username = $_POST ["user"];
