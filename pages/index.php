@@ -1,10 +1,7 @@
 <?php
 session_start();
 require_once 'connection.php';
-if(!isset($_SESSION['login_id']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
-    header("location: ../index.php");
-    exit;
-}
+
 $status = null;
 if(isset( $_POST['Login'])){
     $username = $_POST ["user"];
@@ -20,7 +17,7 @@ if(isset( $_POST['Login'])){
         if ($num_rows == 1) {
             echo "<script> alert(\"Login Successful\");</script>";
             $ret = mysqli_fetch_array ( $result );
-            $_SESSION ['login_id'] = $ret ['uid'];
+            $_SESSION ['uid'] = $ret ['uid'];
             $_SESSION ['user'] = $ret ['username'];
             $_SESSION ['name'] = $ret ['name'];
             header ( "Location: user/index.php" );

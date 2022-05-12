@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../connection.php';
-if(!isset($_SESSION['login_id']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
+if(!isset($_SESSION['uid']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
     header("location: ../index.php");
     exit;
 }
@@ -50,7 +50,7 @@ $date1 = date("Y-m-d");
                     <div class="card p-3" style="width: 18rem;">
                         <div class="card-body">
                             <?php
-                                $ID = $_SESSION['login_id'];
+                                $ID = $_SESSION['uid'];
                                 $query2  = "SELECT * FROM `task` where uid='$ID' AND status = 1;";
                                 $ret2 = mysqli_query($link, $query2);
                                 $num_results2 = mysqli_num_rows($ret2);
@@ -65,7 +65,7 @@ $date1 = date("Y-m-d");
                     <div class="card p-3" style="width: 18rem;">
                         <div class="card-body">
                             <?php
-                                $ID = $_SESSION['login_id'];
+                                $ID = $_SESSION['uid'];
                                 $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1';";
                                 $ret1 = mysqli_query($link, $query1);
                                 $num_results1 = mysqli_num_rows($ret1);
@@ -80,7 +80,7 @@ $date1 = date("Y-m-d");
                     <div class="card p-3" style="width: 18rem;">
                         <div class="card-body">
                             <?php
-                                $ID = $_SESSION['login_id'];
+                                $ID = $_SESSION['uid'];
 
                                 $query3  = "SELECT * FROM `task` where uid='$ID'  AND status = 0 AND due_date <'$date1';";
                                 $ret3 = mysqli_query($link, $query3);
@@ -103,7 +103,7 @@ $date1 = date("Y-m-d");
                     <th " class="butten"><a >Status</a></th>
                 </tr>
                 <?php
-                $ID = $_SESSION['login_id'];
+                $ID = $_SESSION['uid'];
                 $query  = "SELECT * FROM `task` where uid='$ID';";
                 $ret = mysqli_query($link, $query);
                 $num_results = mysqli_num_rows($ret);
@@ -131,8 +131,8 @@ $date1 = date("Y-m-d");
                                 </div>
                             <?php } ?>
                         </td>
-                        <td><a class="butten" href= view.php?ID= <?php echo $row['id'] ;?> >View</a></td>
-                        <td><a class="butten" href= delete.php?ID= <?php echo $row['id'] ;?> >Delete</a></td>
+                        <td><a class="butten" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
+                        <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Delete</a></td>
                     </tr>
                 <?php }if ($num_results==0) { ?>
                     <h3>No assigned tasks at the moment!</h3>

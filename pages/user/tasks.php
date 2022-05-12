@@ -2,7 +2,7 @@
 session_start();
 require_once '../connection.php';
 $status = null;
-if(!isset($_SESSION['login_id']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
+if(!isset($_SESSION['uid']) && !isset($_SESSION['user']) && !isset($_SESSION['name'])) {
     header("location: ../index.php");
     exit;
 }
