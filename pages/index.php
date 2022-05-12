@@ -38,6 +38,8 @@ if(isset( $_POST['Login'])){
         <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/bootstrap.js"></script>
+        <script src="../js/bootstrap.bundle.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <title>Task Tracker</title>
     </head>
     <body>

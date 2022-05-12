@@ -31,6 +31,8 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/style.css" />
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootstrap.js"></script>
+    <script src="../../js/bootstrap.bundle.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
     <title>Task Tracker</title>
 </head>
 <body>
@@ -63,9 +65,9 @@ if (isset($_POST['submit'])) {
     $ret = mysqli_query($link, $query);
     $get = mysqli_fetch_assoc($ret);
     ?>
-    <h3>TASK TITLE:<?php echo $get['title'];?></h3>
-    <h5>DESCRIPTION:</h5><p><?php echo $get['description'];?></p>
-    <p><h6>Completion Status:</h6><?php if($get['status'] == 0) {
+    <h4>TASK TITLE: <?php echo $get['title'];?></h4>
+    <p><strong>DESCRIPTION:</strong> <?php echo $get['description'];?></p>
+    <p><strong>Completion Status:</strong> <?php if($get['status'] == 0) {
         echo "Incomplete";} elseif ($get['status'] == 1){ echo "Complete";}?></p>
     <br>
     <?php

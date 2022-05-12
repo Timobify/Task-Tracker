@@ -16,6 +16,8 @@ $date1 = date("Y-m-d");
         <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css" />
         <script src="../../js/bootstrap.min.js"></script>
         <script src="../../js/bootstrap.js"></script>
+        <script src="../../js/bootstrap.bundle.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <title>Task Tracker</title>
     </head>
     <body>
@@ -30,7 +32,7 @@ $date1 = date("Y-m-d");
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link active" href="index.php">Home </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="tasks.php">Tasks</a>
@@ -98,6 +100,9 @@ $date1 = date("Y-m-d");
                     <th " class="butten"><a >Description</a></th>
                     <th " class="butten"><a >Due Date</a></th>
                     <th " class="butten"><a >Status</a></th>
+                    <th " class="butten"><a >View</a></th>
+                    <th " class="butten"><a >Update</a></th>
+                    <th " class="butten"><a >Delete</a></th>
                 </tr>
                 <?php
                 $ID = $_SESSION['uid'];
@@ -117,18 +122,19 @@ $date1 = date("Y-m-d");
                         <td>
                             <?php if ($row["status"] == 0){ ?>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>">
-                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Complete</label>
+                                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>" disabled>
+                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Incomplete</label>
                                 </div>
                             <?php }
                             elseif ($row["status"] == 1){ ?>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked>
-                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Incomplete</label>
+                                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked disabled>
+                                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Complete</label>
                                 </div>
                             <?php } ?>
                         </td>
                         <td><a class="butten" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
+                        <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
                         <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Delete</a></td>
                     </tr>
                 <?php }if ($num_results==0) { ?>
