@@ -33,9 +33,6 @@ $date1 = date("Y-m-d");
                         <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="tasks.php">Tasks</a>
                     </li>
                     <li class="nav-item">

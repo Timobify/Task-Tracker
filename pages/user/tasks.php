@@ -48,9 +48,6 @@ if (isset($_POST['submit'])) {
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile.php">Profile</a>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link active" href="tasks.php">Tasks</a>
             </li>

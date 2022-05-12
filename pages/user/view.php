@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $details= mysqli_real_escape_string($link,$_POST["comment"]);
     $DateTime = date("Y/m/d");
     $query = "INSERT INTO comments (tid, uid, commenter, details, datetime) values
-		('$taskid','$userID','$commenter','$details','$DateTime')";
+		('$taskid','$userID','$commenter','$details','$date')";
     $result = mysqli_query($link,$query);
     header("Location: view.php?ID=".$taskid);
     exit();
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/style.css" />
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootstrap.js"></script>
     <title>Task Tracker</title>
@@ -46,9 +46,6 @@ if (isset($_POST['submit'])) {
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile.php">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="tasks.php">Tasks</a>
@@ -76,9 +73,9 @@ if (isset($_POST['submit'])) {
     or die(mysqli_error($link));
     while($rows = mysqli_fetch_array($comments)){?>
         <div class="contain">
-            <p class="text-right"><strong><?php echo $rows['commenter']; ?></strong></p>
-            <p class="text-right"><?php echo $rows['details']; ?></p>
-            <span class="time-left"><?php echo $rows['datetime']; ?></span>
+            <p class="text-start"><strong><?php echo $rows['commenter']; ?></strong></p>
+            <p class="text-start"><?php echo $rows['details']; ?></p>
+            <span class="text-end"><?php echo $rows['datetime']; ?></span>
         </div>
     <?php
     }    if(mysqli_num_rows($comments) == 0){
