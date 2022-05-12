@@ -54,7 +54,8 @@ if(isset( $_POST['Login'])){
                     </div>
                 <?php endif;?>
             </div>
-            <div class="mx-auto">
+            <div class="row justify-content-md-center">
+                <div class="col-md-5">
                 <h2>Log In</h2>
                 <form class="py-4 py-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="mb-3">
@@ -75,6 +76,7 @@ if(isset( $_POST['Login'])){
                 </form>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="register.php">New around here? Sign up</a>
+                </div>
             </div>
         </div>
 

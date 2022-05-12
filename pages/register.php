@@ -56,9 +56,10 @@ if (isset($_POST['submit'])) {
             </div>
         <?php endif;?>
     </div>
-    <div class="mx-auto">
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
         <h2>Register Here</h2>
-        <form class="py-4 py-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <div class="mb-3">
                 <label for="Fullname">Fullname</label>
                 <input type="text" class="form-control" name="name" id="Fullname" placeholder="Your Fullname">
@@ -76,6 +77,7 @@ if (isset($_POST['submit'])) {
         </form>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="index.php">Already hava an Account? Log in</a>
+        </div>
     </div>
 </div>
 

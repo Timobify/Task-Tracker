@@ -90,7 +90,7 @@ $date1 = date("Y-m-d");
             </div>
         </div>
     </div>
-    <h1 class="display-7">You can view assigned Tasks from the system.</h1>
+    <h1 class="display-7">You can view your Completed Tasks in the system.</h1>
     <table class="table table-dark table-striped">
         <tr class="header">
             <th ><a >ID</a></th>
@@ -117,14 +117,14 @@ $date1 = date("Y-m-d");
             <td>
             <?php if ($row["status"] == 0){ ?>
                 <div class="form-check form-switch">
-                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>">
-                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Complete</label>
+                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>" disabled>
+                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Incomplete</label>
                 </div>
             <?php }
             elseif ($row["status"] == 1){ ?>
                 <div class="form-check form-switch">
-                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked>
-                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Set Task Incomplete</label>
+                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked disabled>
+                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Complete</label>
                 </div>
             <?php } ?>
             </td>

@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
         echo "Incomplete";} elseif ($get['status'] == 1){ echo "Complete";}?></p>
     <br>
     <?php
-    $comments = mysqli_query($link, "SELECT * FROM comments WHERE tid = {$_SESSION['taskID']} ORDER BY cid")
+    $comments = mysqli_query($link, "SELECT * FROM comments WHERE tid = {$_SESSION['taskID']} ORDER BY cid ASC ")
     or die(mysqli_error($link));
     while($rows = mysqli_fetch_array($comments)){?>
         <div class="contain">

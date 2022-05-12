@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $details= mysqli_real_escape_string($link,$_POST["comment"]);
     $DateTime = date("Y/m/d");
     $query = "INSERT INTO comments (tid, uid, commenter, details, datetime) values
-		('$taskid','$userID','$commenter','$details','$DateTime')";
+		('$taskid','$userID','$commenter','$details','$date')";
     $result = mysqli_query($link,$query);
     header("Location: view.php?ID=".$taskid);
     exit();
