@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid']) && !isset($_SESSION['user']) && !isset($_SESSION['na
     exit;
 }
 $date1 = date("Y-m-d");
+$_SESSION['status'] = null;
 ?>
 <!DOCTYPE html>
 <html>

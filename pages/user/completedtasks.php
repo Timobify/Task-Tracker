@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid']) && !isset($_SESSION['user']) && !isset($_SESSION['na
     exit;
 }
 $date1 = date("Y-m-d");
+$_SESSION['status'] = null;
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@ $date1 = date("Y-m-d");
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="index.php">Home</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="tasks.php">Tasks</a>
