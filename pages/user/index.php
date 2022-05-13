@@ -66,7 +66,7 @@ $_SESSION['status'] = null;
                         <div class="card-body">
                             <?php
                                 $ID = $_SESSION['uid'];
-                                $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1';";
+                                $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1' OR due_date ='$date1';";
                                 $ret1 = mysqli_query($link, $query1);
                                 $num_results1 = mysqli_num_rows($ret1);
                             ?>

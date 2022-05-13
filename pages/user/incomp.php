@@ -57,7 +57,7 @@ $_SESSION['status'] = null;
                     ?>
                     <h1 class="card-title"><?php echo $num_results2;?></h1>
                     <p class="card-text">Completed Tasks</p>
-                    <a href="#" class="btn btn-primary">View Completed Tasks</a>
+                    <a href="completedtasks.php" class="btn btn-primary">View Completed Tasks</a>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@ $_SESSION['status'] = null;
                 <div class="card-body">
                     <?php
                     $ID = $_SESSION['uid'];
-                    $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1';";
+                    $query1  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1' OR due_date ='$date1';";
                     $ret1 = mysqli_query($link, $query1);
                     $num_results1 = mysqli_num_rows($ret1);
                     ?>
@@ -107,7 +107,7 @@ $_SESSION['status'] = null;
         </tr>
         <?php
         $ID = $_SESSION['uid'];
-        $query  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1';";
+        $query  = "SELECT * FROM `task` where uid='$ID' AND status = 0 AND due_date >'$date1' OR due_date ='$date1';";
         $ret = mysqli_query($link, $query);
         $num_results = mysqli_num_rows($ret);
         for ($i = 0; $i < $num_results; $i++) {
