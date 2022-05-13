@@ -125,7 +125,8 @@ if (isset($_POST['submit'])) {
     <p><strong>DESCRIPTION:</strong> <?php echo $get['description'];?></p>
     <p><strong>Completion Status:</strong> <?php if($get['status'] == 0) {
         echo "Incomplete";} elseif ($get['status'] == 1){ echo "Complete";}?></p>
-    <br>
+
+    <h4>Comments</h4>
     <?php
     $comments = mysqli_query($link, "SELECT * FROM comments WHERE tid = {$_SESSION['taskID']} ORDER BY cid ASC ")
     or die(mysqli_error($link));
