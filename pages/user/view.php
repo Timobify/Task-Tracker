@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 <div class="container">
-    <h2>View Task</h2>
+    <p class="h3">View Task</p> <p>Click here to view other <a href="index.php">Assigned Tasks</a></p>
     <?php
     $query  = "SELECT * FROM task WHERE id ={$_SESSION['taskID']}";
     $ret = mysqli_query($link, $query);

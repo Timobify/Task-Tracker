@@ -60,7 +60,6 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 <div class="container">
-    <h2>Create Task</h2>
     <br>
     <div class="page-header">
         <?php if($status == "alert"):?>
@@ -76,44 +75,49 @@ if (isset($_POST['submit'])) {
             </div>
         <?php endif;?>
     </div>
-    <form class="py-4 py-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <?php
-        $query  = "SELECT * FROM user";
-        $ret = mysqli_query($link, $query);
-        ?>
-        <div class="mb-3">
-            <label for="titleV">Task Title</label>
-            <input type="text" class="form-control" name="title" id="titleV" placeholder="Task Title">
-        </div>
-        <div class="mb-3">
-            <label for="descriptionV">Task Description</label>
-            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="dueDateV">Due Date</label>
-            <input type="date" class="form-control" name="date" id="dueDateV" >
-        </div>
-        <div class="mb-3">
-            <label for="dueDateV">Due Date</label>
-            <select class="form-select" name="status" aria-label="Default select example" hidden>
-                <option value="0" selected>Incomplete</option>
-                <option value="1">Complete</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="assigned">Assign to User</label>
-            <select class="form-select" name="uid" aria-label="Default select example">
-                <?php
-                while ($row = mysqli_fetch_array ($ret, MYSQLI_ASSOC)) {
-                    ?>
-                    <option value="<?php echo $row["uid"];?>"> <?php echo "".$row["name"]."";?> </option>
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+        <h2>Create Task</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <?php
+            $query  = "SELECT * FROM user";
+            $ret = mysqli_query($link, $query);
+            ?>
+            <div class="mb-3">
+                <label for="titleV">Task Title</label>
+                <input type="text" class="form-control" name="title" id="titleV" placeholder="Task Title">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionV">Task Description</label>
+                <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="dueDateV">Due Date</label>
+                <input type="date" class="form-control" name="date" id="dueDateV" >
+            </div>
+            <div class="mb-3">
+                <label for="dueDateV">Completion Status</label>
+                <select class="form-select" name="status" aria-label="Default select example" hidden>
+                    <option value="0" selected>Incomplete</option>
+                    <option value="1">Complete</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="assigned">Assign to User</label>
+                <select class="form-select" name="uid" aria-label="Default select example">
                     <?php
-                }
-                ?>
-            </select>
+                    while ($row = mysqli_fetch_array ($ret, MYSQLI_ASSOC)) {
+                        ?>
+                        <option value="<?php echo $row["uid"];?>"> <?php echo "".$row["name"]."";?> </option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Create Tasks</button>
+        </form>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Create Tasks</button>
-    </form>
+    </div>
 </div>
 </body>
 </html>

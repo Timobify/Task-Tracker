@@ -134,7 +134,7 @@ $date1 = date("Y-m-d");
             <?php } ?>
             </td>
             <td><a class="butten" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
-            <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
+            <td><a class="butten" href=" update.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
             <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Delete</a></td>
             </tr>
             <?php }if ($num_results==0) { ?>
