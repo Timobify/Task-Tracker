@@ -51,8 +51,8 @@ if(isset( $_POST['Login'])){
             <br>
             <div class="page-header">
                 <?php if($status == "alert"):?>
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         The Username or Password you entered is incorrect please try again. <a href="#" class="alert-link"> </a>.
                     </div>
                 <?php endif;?>

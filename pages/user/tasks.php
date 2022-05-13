@@ -64,14 +64,14 @@ if (isset($_POST['submit'])) {
     <br>
     <div class="page-header">
         <?php if($status == "alert"):?>
-            <div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Sorry the Task wasn't saved. Try again <a href="#" class="alert-link">Alert Link</a>.
             </div>
         <?php endif;?>
         <?php if($status == "success"):?>
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 Task successfully created and assigned to a User. <a href="index.php" class="alert-link">Success Link</a>.
             </div>
         <?php endif;?>
