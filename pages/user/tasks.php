@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
     <span class="nav justify-content-around">User :<?php echo " {$_SESSION ['name']}"; ?></span>
     </div>
 </nav>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

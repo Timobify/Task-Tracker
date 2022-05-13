@@ -30,7 +30,7 @@ $_SESSION['status'] = null;
     </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@ $_SESSION['status'] = null;
     </div>
     </div>
 </nav>
-
+<br>
 <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,7 +104,7 @@ $_SESSION['status'] = null;
     </div>
     <div class="row">
         <div class="col">
-            <div class="card p-3" style="width: 18rem;">
+            <div class="card p-3 m-2" style="width: 18rem;">
                 <div class="card-body">
                     <?php
                     $ID = $_SESSION['uid'];
@@ -119,7 +119,7 @@ $_SESSION['status'] = null;
             </div>
         </div>
         <div class="col">
-            <div class="card p-3" style="width: 18rem;">
+            <div class="card p-3 m-2" style="width: 18rem;">
                 <div class="card-body">
                     <?php
                     $ID = $_SESSION['uid'];
@@ -134,7 +134,7 @@ $_SESSION['status'] = null;
             </div>
         </div>
         <div class="col">
-            <div class="card p-3" style="width: 18rem;">
+            <div class="card p-3 m-2" style="width: 18rem;">
                 <div class="card-body">
                     <?php
                     $ID = $_SESSION['uid'];
