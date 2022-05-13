@@ -91,7 +91,7 @@ $_SESSION['status'] = null;
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Mark as Read</button>
+                            <a href="notify.php" type="button" class="btn btn-primary">Mark as Read</a>
                         </div>
                     </div>
                 </div>

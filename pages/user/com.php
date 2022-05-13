@@ -18,4 +18,3 @@ if (isset($_POST['submit'])) {
     header("Location: view.php?ID=".$taskid);
     exit();
 }
-?>
