@@ -12,9 +12,10 @@ if (isset($_POST['submit'])) {
     $date =  mysqli_real_escape_string($link,$_POST["date"]);
     $status =  mysqli_real_escape_string($link,$_POST["status"]);
     $uid =  mysqli_real_escape_string($link,$_POST["uid"]);
+    $notify = 0;
 
-    $query = "INSERT into task (Title, Description, Due_Date, Status, uid) values
-    ('$title','$description','$date','$status','$uid')";
+    $query = "INSERT into task (Title, Description, Due_Date, Status, uid, notify) values
+    ('$title','$description','$date','$status','$uid','$notify')";
     $result = mysqli_query($link,$query);
     if($result != null ){
         $status = "success";
