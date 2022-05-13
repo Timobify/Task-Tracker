@@ -24,10 +24,14 @@ $_SESSION['status'] = null;
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
+    <div class="container">
     <span class="navbar-brand mb-0 h1">Task Tracker</span>
     <span class="nav justify-content-around">User :<?php echo " {$_SESSION ['name']}"; ?></span>
+    </div>
 </nav>
+
 <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -59,7 +63,9 @@ $_SESSION['status'] = null;
             </li>
         </ul>
     </div>
+    </div>
 </nav>
+
 <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

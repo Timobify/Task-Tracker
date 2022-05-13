@@ -40,8 +40,11 @@ if (isset($_POST['submit'])) {
     <title>Task Tracker</title>
 </head>
 <body>
+
 <nav class="navbar navbar-light bg-light">
+    <div class="container">
     <span class="navbar-brand mb-0 h1">Task Tracker</span>
+    </div>
 </nav>
 <div class="container">
     <br>

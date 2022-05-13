@@ -38,10 +38,13 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
+    <div class="container">
     <span class="navbar-brand mb-0 h1">Task Tracker</span>
     <span class="nav justify-content-around">User :<?php echo " {$_SESSION ['name']}"; ?></span>
+    </div>
 </nav>
 <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -72,6 +75,7 @@ if (isset($_POST['submit'])) {
                 <a class="nav-link" href="logout.php">Log Out</a>
             </li>
         </ul>
+    </div>
     </div>
 </nav>
 <div class="container">
@@ -138,7 +142,6 @@ if (isset($_POST['submit'])) {
         }
     ?>
     <br>
-
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
         <div class="container">
             <input type="hidden" name="tasks" value="<?php echo "{$_SESSION['taskID']}";?>" >
@@ -151,6 +154,7 @@ if (isset($_POST['submit'])) {
                 <label for="Description">Your Comment</label>
                 <textarea class="form-control" name="comment" rows="3" required></textarea>
             </div>
+            <br/>
             <button type="submit" name="submit" class="btn btn-primary">Comment</button>
         </div>
     </form>
