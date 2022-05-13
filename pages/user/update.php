@@ -44,6 +44,7 @@ if (isset($_POST['submit'])) {
     <script src="../../js/bootstrap.js"></script>
     <script src="../../js/bootstrap.bundle.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
     <title>Task Tracker</title>
 </head>
 <body>

@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
     <script src="../../js/bootstrap.js"></script>
     <script src="../../js/bootstrap.bundle.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
     <title>Task Tracker</title>
 </head>
 <body>
@@ -47,7 +48,7 @@ if (isset($_POST['submit'])) {
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="tasks.php">Tasks</a>
