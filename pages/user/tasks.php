@@ -52,6 +52,21 @@ if (isset($_POST['submit'])) {
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
+            <li class="nav-item">
+                <?php
+                $ID = $_SESSION['uid'];
+                $qry  = "SELECT * FROM `task` where uid='$ID' AND notify = 0;";
+                $rt = mysqli_query($link, $qry);
+                $nums = mysqli_num_rows($rt);
+                ?>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link position-relative">
+                    Notifications
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?php echo $nums ;?>+
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                </a>
+            </li>
             <li class="nav-item active">
                 <a class="nav-link active" href="tasks.php">Tasks</a>
             </li>
@@ -62,6 +77,41 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Newly Assigned Tasks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $notify = mysqli_query($link, "SELECT * FROM task WHERE uid = {$_SESSION['uid']} AND notify = '0' ORDER BY id ASC ")
+                    or die(mysqli_error($link));
+                    while($rows = mysqli_fetch_array($notify)){?>
+                        <div class="contain">
+                            <p class="text-start"><strong>Task Title</strong> <?php echo $rows['title']; ?></p>
+                            <p class="text-start"><b>Description</b> <?php echo $rows['description']; ?></p>
+                            <span class="text-end"><b>Due Date</b> <?php echo $rows['due_date']; ?></span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <?php
+                    }    if(mysqli_num_rows($notify) == 0){
+                        $no = "<div id='group'>
+						                  <h3 class=' text-info list-group-item-heading'> No Notifications at the Moment </h3>
+						               </div>";
+                        echo $no;
+                    }
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="notify.php" type="button" class="btn btn-primary">Mark as Read</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <div class="page-header">
         <?php if($status == "alert"):?>
