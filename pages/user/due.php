@@ -93,7 +93,7 @@ $_SESSION['status'] = null;
             </div>
         </div>
     </div>
-    <h1 class="display-7">You can view your Completed Tasks in the system.</h1>
+    <h1 class="display-7">You can view your Overdue Tasks in the system.</h1>
     <table class="table table-dark table-striped">
         <tr class="header">
             <th ><a >ID</a></th>
@@ -107,41 +107,41 @@ $_SESSION['status'] = null;
         </tr>
         <?php
         $ID = $_SESSION['uid'];
-        $query  = "SELECT * FROM `task` where uid='$ID' AND status = 1;";
+        $query  = "SELECT * FROM `task` where uid='$ID'  AND status = 0 AND due_date <'$date1';";
         $ret = mysqli_query($link, $query);
         $num_results = mysqli_num_rows($ret);
         for ($i = 0; $i < $num_results; $i++) {
             $row = mysqli_fetch_array ($ret);
             ?>
             <tr>
-            <?php $id = $row["id"]; ?>
-            <td class="myvalue"><?php echo $row["id"]; ?></td>
-            <td><?php echo $row["title"]; ?></td>
-            <td><?php echo $row["description"] ; ?></td>
-            <td><?php echo $row["due_date"] ; ?></td>
-            <input class="myid" type="hidden" value="<?php $id ?>" />
-            <td>
-            <?php if ($row["status"] == 0){ ?>
-                <div class="form-check form-switch">
-                    <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>" disabled>
-                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Incomplete</label>
-                </div>
-            <?php }
-            elseif ($row["status"] == 1){ ?>
-                <div class="form-check form-switch">
-                    <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked disabled>
-                    <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Complete</label>
-                </div>
-            <?php } ?>
-            </td>
-            <td><a type="button" class="btn btn-success" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
-            <td><a type="button" class="btn btn-primary" href=" update.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
-            <td><a type="button" class="btn btn-danger" href="javascript:void(0)" onclick="return deleteContent('<?php echo $id; ?>');" >Delete</a></td>
+                <?php $id = $row["id"]; ?>
+                <td class="myvalue"><?php echo $row["id"]; ?></td>
+                <td><?php echo $row["title"]; ?></td>
+                <td><?php echo $row["description"] ; ?></td>
+                <td><?php echo $row["due_date"] ; ?></td>
+                <input class="myid" type="hidden" value="<?php $id ?>" />
+                <td>
+                    <?php if ($row["status"] == 0){ ?>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input status" type="checkbox" value="1" role="switch" id="toggleBtn<?php $id ?>" disabled>
+                            <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Incomplete</label>
+                        </div>
+                    <?php }
+                    elseif ($row["status"] == 1){ ?>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input status" type="checkbox" role="switch" value="0" id="toggleBtn<?php $id ?>" checked disabled>
+                            <label class="form-check-label" for="toggleBtn<?php $id ?>">Task Complete</label>
+                        </div>
+                    <?php } ?>
+                </td>
+                <td><a type="button" class="btn btn-success" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
+                <td><a type="button" class="btn btn-primary" href=" update.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
+                <td><a type="button" class="btn btn-danger" href="javascript:void(0)" onclick="return deleteContent('<?php echo $id; ?>');" >Delete</a></td>
             </tr>
-            <?php }if ($num_results==0) { ?>
+        <?php }if ($num_results==0) { ?>
             <h3>No assigned tasks at the moment!</h3>
         <?php }
-        echo "<caption>You have completed {$num_results} tasks</caption>";
+        echo "<caption>You have {$num_results} tasks that are overdue</caption>";
         ?>
     </table>
 </div>

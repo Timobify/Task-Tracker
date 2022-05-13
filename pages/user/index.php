@@ -72,7 +72,7 @@ $_SESSION['status'] = null;
                             ?>
                             <h1 class="card-title"><?php echo $num_results1;?></h1>
                             <p class="card-text">Incompleted Tasks</p>
-                            <a href="#" class="btn btn-primary">View Incompleted Tasks</a>
+                            <a href="incomp.php" class="btn btn-primary">View Incompleted Tasks</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ $_SESSION['status'] = null;
                             ?>
                             <h1 class="card-title"><?php echo $num_results3;?></h1>
                             <p class="card-text">Over Due Tasks</p>
-                            <a href="#" class="btn btn-primary">View Over Due Tasks</a>
+                            <a href="due.php" class="btn btn-primary">View Over Due Tasks</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ $_SESSION['status'] = null;
                     ?>
                     <tr>
                         <?php $id = $row["id"]; ?>
-                        <td class="myvalue"><?php echo $row["id"]; ?></td>
+                        <td class="myvalue"><?php echo $i+1; ?></td>
                         <td><?php echo $row["title"]; ?></td>
                         <td><?php echo $row["description"] ; ?></td>
                         <td><?php echo $row["due_date"] ; ?></td>
@@ -134,14 +134,14 @@ $_SESSION['status'] = null;
                                 </div>
                             <?php } ?>
                         </td>
-                        <td><a class="butten" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
-                        <td><a class="butten" href=" update.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
-                        <td><a class="butten" href=" delete.php?ID=<?php echo $row['id'] ;?> ">Delete</a></td>
+                        <td><a type="button" class="btn btn-success" href=" view.php?ID=<?php echo $row['id'] ;?> ">View</a></td>
+                        <td><a type="button" class="btn btn-primary" href=" update.php?ID=<?php echo $row['id'] ;?> ">Update</a></td>
+                        <td><a type="button" class="btn btn-danger" href="javascript:void(0)" onclick="return deleteContent('<?php echo $id; ?>');" >Delete</a></td>
                     </tr>
                 <?php }if ($num_results==0) { ?>
                     <h3>No assigned tasks at the moment!</h3>
                 <?php }
-                echo "<caption>User {$_SESSION['user']} can delete or view the {$num_results} assigned tasks</caption>";
+                echo "<caption>You have been assigned {$num_results} tasks</caption>";
                 ?>
             </table>
         </div>
@@ -154,7 +154,7 @@ $_SESSION['status'] = null;
                     alert(id);
                     $.ajax({
                         type: "POST",
-                        url: "/CodeIgniter/users/Users/update",
+                        url: "update.php",
                         data: {decision: decision, id: id},
                         success: function (msg) {
 
@@ -163,7 +163,12 @@ $_SESSION['status'] = null;
                     })
                 });
             });
-
+            function deleteContent(id) {
+                if(confirm('Are you sure you want to delete this ?')) {
+                    window.location='delete.php?id='+id;
+                }
+                return false;
+            }
         </script>
     </body>
 </html>
